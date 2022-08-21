@@ -13,7 +13,8 @@
     <!-- End Fonts -->
 
     <!-- Begin Css -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/sweetalert2.css">
     <!-- End Css -->
   </head>
   <body>
@@ -110,7 +111,7 @@
         </div>
         <div class="row justify-content-center">
           <div class="col-md-6">
-            <form method="post" action="https://formspree.io/f/xlevewkq">
+            <form method="post" action="https://formspree.io/f/xlevewkq" id="my-form">
               <div class="mb-3">
                 <label for="name" class="form-label">Name Lengkap</label>
                 <input type="text" name="name" class="form-control" id="name" required>
@@ -123,7 +124,7 @@
                 <label for="message" class="form-label">Pesan</label>
                 <textarea class="form-control" name="message" id="message" rows="3" required></textarea>
               </div>
-              <button type="submit" class="btn btn-primary">Kirim</button>
+              <button class="btn btn-primary" id="my-form-button">Kirim</button>
             </form>
           </div>
         </div>
@@ -140,18 +141,54 @@
     <!-- End footer -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <script src="js/sweetalert2.all.js"></script>
     <script>
-        // var btn = document.getElementById('kirim');
-        // btn.addEventListener('click', function(e) {
-        //   e.preventDefault()
-        //   var name = document.getElementById('name').value;
-        //   var email = document.getElementById('email').value;
-        //   var subject = document.getElementById('subject').value;
-        //   var pesan = document.getElementById('pesan').value;
-        //   var body = 'name: ' + name + '<br/> email: ' + email + '<br/> subject:' + subject + '<br/> message: ' + pesan;
-
-        //   alert('Gak bisa wee :(')
-        // })
+        var form = document.getElementById("my-form");
+    
+        async function handleSubmit(event) {
+          event.preventDefault();
+          var status = document.getElementById("my-form-status");
+          var data = new FormData(event.target);
+          fetch(event.target.action, {
+            method: form.method,
+            body: data,
+            headers: {
+                'Accept': 'application/json'
+            }
+          }).then(response => {
+            if (response.ok) {
+              Swal.fire({
+                icon: 'success',
+                title: 'Good job!',
+                text: 'Thanks for your submission!',
+              })
+              form.reset()
+            } else {
+              response.json().then(data => {
+                if (Object.hasOwn(data, 'errors')) {
+                  Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: data["errors"].map(error => error["message"]).join(", ")
+                  })
+                } else {
+                  Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: "There was a problem submitting your form"
+                  })
+                }
+              })
+            }
+          }).catch(error => {
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: "There was a problem submitting your form"
+            })
+          });
+        }
+        form.addEventListener("submit", handleSubmit)
     </script>
   </body>
 </html>
