@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>My Portofolio | Rizky Ambudhi Mukti</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="shortcut icon" type="image/x-icon" href="img/r.png" />
 
     <!-- Begin Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -139,56 +140,27 @@
       </svg> by <a href="https://www.instagram.com/rambudhii/" class="text-white fw-bold">Rambudhi</a></p>
     </footer>
     <!-- End footer -->
+
+    <!-- start :: preloader -->
+    <div id="preloader-active">
+        <div class="preloader d-flex align-items-center justify-content-center">
+            <div class="preloader-inner position-relative">
+                <div class="text-center">
+                    <img src="img/valentines-icegif-5.gif" alt="" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end :: preloader -->
+
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/jquery-migrate-3.3.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <script src="https://smtpjs.com/v3/smtp.js"></script>
     <script src="js/sweetalert2.all.js"></script>
-    <script>
-        var form = document.getElementById("my-form");
-    
-        async function handleSubmit(event) {
-          event.preventDefault();
-          var status = document.getElementById("my-form-status");
-          var data = new FormData(event.target);
-          fetch(event.target.action, {
-            method: form.method,
-            body: data,
-            headers: {
-                'Accept': 'application/json'
-            }
-          }).then(response => {
-            if (response.ok) {
-              Swal.fire({
-                icon: 'success',
-                title: 'Good job!',
-                text: 'Thanks for your submission!',
-              })
-              form.reset()
-            } else {
-              response.json().then(data => {
-                if (Object.hasOwn(data, 'errors')) {
-                  Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: data["errors"].map(error => error["message"]).join(", ")
-                  })
-                } else {
-                  Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: "There was a problem submitting your form"
-                  })
-                }
-              })
-            }
-          }).catch(error => {
-            Swal.fire({
-              icon: 'error',
-              title: 'Oops...',
-              text: "There was a problem submitting your form"
-            })
-          });
-        }
-        form.addEventListener("submit", handleSubmit)
-    </script>
+    <script src="js/magnific-popup.js"></script>
+    <script src="js/scrollup.js"></script>
+    <script src="js/main.js?v=5.5"></script>
+    <script src="js/resume.js"></script>
   </body>
 </html>

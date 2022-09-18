@@ -47,3 +47,97 @@
         margin-bottom: -8px;
     }
  }
+
+ .preloader {
+    background-color: #fff;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 999999;
+    -webkit-transition: .6s;
+    transition: .6s;
+    margin: 0 auto;
+}
+
+.preloader img.jump {
+    max-height: 100px;
+}
+
+.d-flex {
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+}
+
+.align-items-center {
+    -webkit-box-align: center !important;
+        -ms-flex-align: center !important;
+            align-items: center !important;
+}
+
+.justify-content-center {
+    -webkit-box-pack: center !important;
+        -ms-flex-pack: center !important;
+            justify-content: center !important;
+}
+
+#scrollUp {
+    width: 32px;
+    height: 32px;
+    color: #253D4E;
+    right: 30px;
+    bottom: 30px;
+    border-radius: 30px;
+    text-align: center;
+    overflow: hidden;
+    z-index: 999 !important;
+    border: 2px solid #253D4E;
+    background-color: #fff;
+}
+
+#scrollUp {
+    right: 37px;
+    bottom: 75px;
+}
+
+a, button {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#scrollUp i {
+    display: block;
+    line-height: 32px !important;
+    font-size: 25px;
+}
+
+@font-face {
+    font-family: "uicons-regular-straight";
+    src: url("uicons/uicons-regular-straight.eot#iefix") format("embedded-opentype"),
+        url("uicons/uicons-regular-straight.woff2") format("woff2"),
+        url("uicons/uicons-regular-straight.woff") format("woff");
+}
+
+i[class^="fi-rs-"], span[class^="fi-rs-"] {
+    line-height: 0 !important;
+}
+
+i[class^="fi-rs-"]:before, i[class*=" fi-rs-"]:before, span[class^="fi-rs-"]:before, span[class*="fi-rs-"]:before {
+    font-family: uicons-regular-straight !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1 !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.fi-rs-arrow-small-up:before {
+    content: "\f11f";
+}
+
